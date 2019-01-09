@@ -20,7 +20,7 @@ public class MovieServiceController {
     @GetMapping("/{movieTitle}")
     public Mono<String> searchMovie(@PathVariable String movieTitle, @RequestParam(required = false) String apiName) {
         if ("TheMovieDB".equals(apiName)) {
-            return null;
+            return Mono.empty();
         } else { // By Default use OMDB
             WebClient.ResponseSpec responseSpec = OMDBclient.get().uri("?apikey=" + config.getKey() + "&t=" + movieTitle).retrieve();
             return responseSpec.bodyToMono(String.class);
