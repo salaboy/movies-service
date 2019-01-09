@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
@@ -22,8 +23,7 @@ public class MovieServiceController {
         if ("TheMovieDB".equals(apiName)) {
             return Mono.empty();
         } else { // By Default use OMDB
-            WebClient.ResponseSpec responseSpec = OMDBclient.get().uri("?apikey=" + config.getKey() + "&t=" + movieTitle).retrieve();
-            return responseSpec.bodyToMono(String.class);
+            return OMDBclient.get().uri("?apikey=" + config.getKey() + "&t=" + movieTitle).retrieve().bodyToMono(String.class);
         }
     }
 }

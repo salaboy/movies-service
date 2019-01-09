@@ -25,8 +25,8 @@ public class MoviesServiceApplicationTests {
         WebTestClient.ResponseSpec exchange = testClient.get().uri("/sidekicks").exchange();
         exchange.expectStatus().is2xxSuccessful()
                 .expectBody()
-                .jsonPath("Title").isEqualTo("Sidekicks")
-                .jsonPath("Year").isEqualTo("1992");
+                    .jsonPath("Title").isEqualTo("Sidekicks")
+                    .jsonPath("Year").isEqualTo("1992");
 
 
     }
