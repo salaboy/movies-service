@@ -40,10 +40,10 @@ public class MoviesServiceApplicationTests {
                 .jsonPath("Year").isEqualTo("1992");
 
         WebTestClient.ResponseSpec exchange2 = testClient.get().uri("/sidekicks?apiName=TheMovieDB").exchange();
-        exchange.expectStatus().is2xxSuccessful()
+        exchange2.expectStatus().is2xxSuccessful()
                 .expectBody()
                 .jsonPath("results[0].title").isEqualTo("Sidekicks")
-                .jsonPath("release_date").isEqualTo("1974-03-21");
+                .jsonPath("results[0].release_date").isEqualTo("1992-12-17");
     }
 
     @Test
