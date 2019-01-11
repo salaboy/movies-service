@@ -46,11 +46,15 @@ public class MoviesServiceApplicationTests {
                 .jsonPath("results[0].release_date").isEqualTo("1992-12-17");
     }
 
-    @Test
+    @Test // Add HTTP Status code checks in Controllers
     public void searchShouldFailOnWrongParams() {
 
     }
 
+    @Test // Istio instead of Java mechanism
+    public void searchShouldRetryInCaseOfHTTPError() {
+
+    }
 
 }
 
